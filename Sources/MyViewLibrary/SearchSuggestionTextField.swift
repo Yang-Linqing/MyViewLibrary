@@ -57,15 +57,13 @@ public struct SearchSuggestionTextField: View {
                         if suggest != "" {
                             if text == suggest {
                                 Button(suggest) {
-                                    text = suggest
-                                    editingText = suggest
+                                    setText(to: suggest)
                                 }
                                 .buttonStyle(.borderedProminent)
                                 .buttonBorderShape(.capsule)
                             } else {
                                 Button(suggest) {
-                                    text = suggest
-                                    editingText = suggest
+                                    setText(to: suggest)
                                 }
                                 .buttonStyle(.bordered)
                                 .buttonBorderShape(.capsule)
@@ -78,6 +76,14 @@ public struct SearchSuggestionTextField: View {
         }
         .onAppear {
             editingText = text
+        }
+    }
+    
+    private func setText(to newValue: String) {
+        text = newValue
+        editingText = newValue
+        if showSuggestionOnlyWhenEditing {
+            focused = false
         }
     }
 }
